@@ -1,0 +1,28 @@
+{
+  "name": "clinicproject",
+  "version": "1.0.0",
+  "description": "javascript, postgresql",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irfanbaihaki84/clinicProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/irfanbaihaki84/clinicProject/issues"
+  },
+  "homepage": "https://github.com/irfanbaihaki84/clinicProject#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  }
+}

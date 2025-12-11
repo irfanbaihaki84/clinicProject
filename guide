@@ -3,5 +3,13 @@
 git clone <source>
 git status
 git add .
-git commit -M "comments"
+git commit -m "comments"
 git push origin main
+
+# create file .gitignore
+
+node_modules/
+build/
+.env
+_.log
+_.tmp
