@@ -4,7 +4,7 @@
   "description": "javascript, postgresql",
   "main": "index.js",
   "scripts": {
-    "start:dev": "node index.js"
+    "start:dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
