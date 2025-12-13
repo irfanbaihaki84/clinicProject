@@ -6,6 +6,11 @@ git add .
 git commit -m "comments"
 git push origin main
 
+# node_modules installation
+
+npm install express dotenv sequelize pg pg-hstore --save
+npm install nodemon sequelize-cli --save-dev
+
 # create file .gitignore
 
 node*modules/
@@ -32,6 +37,7 @@ DB_PORT=5432
 npm i sequelize pg pg-hstore --save
 npm i sequelize-cli --save-dev
 npx sequelize-cli init
+npx sequelize-cli db:create
 
 // .sequelizerc
 
@@ -43,3 +49,7 @@ config: path.resolve('config', 'config.js'),
 'seeders-path': path.resolve('db', 'seeders'),
 'migrations-path': path.resolve('db', 'migrations'),
 };
+
+npx sequelize-cli model:generate --name user --attributes nik:number,email:string,userType:ENUM,userName:string,password:string,createdAt:date,updatedAt:date
+npx sequelize-cli db:migrate
+npx sequelize-cli db:migrate:undo
