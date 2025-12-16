@@ -2,6 +2,7 @@
 const { Model, Sequelize, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../../config/database');
+const AppError = require('../../utils/appError');
 
 module.exports = sequelize.define(
   'user',
@@ -14,15 +15,50 @@ module.exports = sequelize.define(
     },
     nik: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'NIK is required',
+        },
+      },
     },
     email: {
       type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        isEmail: {
+          msg: 'Invalid email format',
+        },
+        notNull: {
+          msg: 'Email is required',
+        },
+      },
     },
     userType: {
       type: DataTypes.ENUM('0', '1', '2'),
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'userType is required',
+        },
+        notEmpty: {
+          msg: 'userType cannot be empty',
+        },
+        isIn: {
+          args: [['0', '1', '2']],
+          msg: 'Invalid userType',
+        },
+      },
     },
     userName: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Username is required',
+        },
+      },
     },
     password: {
       type: DataTypes.STRING,
@@ -31,7 +67,10 @@ module.exports = sequelize.define(
       type: DataTypes.VIRTUAL,
       set(value) {
         if (value !== this.password) {
-          throw new Error('Password confirmation does not match password');
+          throw new AppError(
+            'Password confirmation does not match password',
+            400
+          );
         }
         const hashPassword = bcrypt.hashSync(this.password, 10);
         this.setDataValue('password', hashPassword);

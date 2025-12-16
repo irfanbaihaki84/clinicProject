@@ -14,6 +14,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
+        unique: true,
       },
       userType: {
         type: Sequelize.ENUM('0', '1', '2'),
